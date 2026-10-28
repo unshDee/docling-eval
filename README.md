@@ -19,6 +19,54 @@
 
 Evaluate [Docling](https://github.com/docling-project/docling) on variety of datasets.
 
+## Installation
+
+Docling-eval requires Python 3.10 or newer.
+
+### From PyPI
+
+```shell
+pip install "docling-eval[hyperscalers]"
+```
+
+> [!NOTE]
+> The `docling-eval` CLI currently imports the cloud prediction providers at startup, so it needs the
+> `hyperscalers` extra to run (see [#147](https://github.com/docling-project/docling-eval/issues/147)).
+
+The available optional extras are:
+
+| Extra          | Enables                                                                     |
+|----------------|-----------------------------------------------------------------------------|
+| `hyperscalers` | Azure, AWS and Google prediction providers, and IBM COS (S3) dataset access |
+| `vlm`          | Docling VLM pipelines (e.g. SmolDocling)                                    |
+| `cvat_tools`   | CVAT annotation tooling                                                     |
+
+Several extras can be combined, e.g. `pip install "docling-eval[hyperscalers,vlm]"`.
+
+### From source
+
+Clone the repository and install it into a virtual environment, either with [uv](https://docs.astral.sh/uv/) (recommended):
+
+```shell
+git clone https://github.com/docling-project/docling-eval.git
+cd docling-eval
+uv sync --extra hyperscalers   # or `--all-extras` to install all optional extras
+uv run docling-eval --help
+```
+
+or with `pip`:
+
+```shell
+git clone https://github.com/docling-project/docling-eval.git
+cd docling-eval
+python -m venv .venv
+source .venv/bin/activate
+pip install -e ".[hyperscalers]"
+docling-eval --help
+```
+
+If you want to contribute, see [CONTRIBUTING.md](CONTRIBUTING.md) for the development setup.
+
 ## Features
 
 Evaluate docling on various datasets. You can use the cli
